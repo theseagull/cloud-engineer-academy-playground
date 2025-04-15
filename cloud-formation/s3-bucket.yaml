@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "CloudFormation template to create an S3 bucket"
+Resources:
+  # S3 Bucket
+  BUMAS3Bucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: "buma-cloudformation-s3-bucket"
+      Tags:
+        - Key: "Name"
+          Value: "buma-cloudformation-s3-bucket"
+        - Key: "PROVISIONED_BY"
+          Value: "CloudFormationStack" # Reference the CFStackName
