@@ -27,5 +27,5 @@ Resources:
   
 Outputs:
   BucketName:
-    Description: The name of the S3 bucket
+    Description: The name of the S3 bucket to be created
     Value: !Ref MyS3Bucket
