@@ -12,6 +12,7 @@ permissions:
 jobs:
   validate-cfn:
     runs-on: ubuntu-latest
+    if: github.event.action != 'closed' || github.event.pull_request.merged != true
     steps:
       # Checkout the code from the repository
       - name: Checkout code
