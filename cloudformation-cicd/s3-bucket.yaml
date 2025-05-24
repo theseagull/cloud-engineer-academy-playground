@@ -21,7 +21,7 @@ Resources:
           Value: !Ref Environment
         - Key: PROVISIONED_BY
           Value: 'CloudFormation'
-        - Key: PROVISIONES_FOR:
+        - Key: PROVISIONES_FOR
           Value: 'Cloud_Engineer_Academy'
   
   Outputs:
