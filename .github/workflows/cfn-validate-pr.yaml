@@ -45,6 +45,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const prNumber = context.issue.number;
+            const stack_name = `pr-test-stack-${prNumber}`;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const commentBody = `CloudFormation test stack \`${stack_name}\` has been successfully created for this PR.`;
