@@ -5,7 +5,7 @@ on:
       - 'cloudformation-cicd/**'
 
 permissions:
-  pull_requests: write
+  pull-requests: write
   contents: read
 
 jobs:
