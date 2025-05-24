@@ -24,7 +24,7 @@ Resources:
         - Key: PROVISIONES_FOR
           Value: 'Cloud_Engineer_Academy'
   
-  Outputs:
-    BucketName:
-      Description: The name of the S3 bucket
-      Value: !Ref MyS3Bucket
+Outputs:
+  BucketName:
+    Description: The name of the S3 bucket
+    Value: !Ref MyS3Bucket
