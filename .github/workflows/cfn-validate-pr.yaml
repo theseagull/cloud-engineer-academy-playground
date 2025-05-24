@@ -60,7 +60,7 @@ jobs:
   # Delete the CloudFormation stack after the PR is closed
   cleanup-on-merge:
     runs-on: ubuntu-latest
-    if: github.event.action == 'closed' && github.event.pull_request.merged == true
+    if: github.event.action == 'closed' && github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
     steps:
       # Configure AWS credentials
       - name: Configure AWS credentials
