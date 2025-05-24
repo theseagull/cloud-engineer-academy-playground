@@ -57,7 +57,7 @@ jobs:
             });
   
   # Cleanup after PR merge
-  # Delete the CloudFormation stack after the PR is closed
+  # Delete the CloudFormation stack after the PR is closed and merged
   cleanup-on-merge:
     runs-on: ubuntu-latest
     if: github.event.action == 'closed' && github.event.pull_request.merged == true
