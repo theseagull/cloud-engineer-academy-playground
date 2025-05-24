@@ -8,6 +8,7 @@ Parameters:
     Default: test
     AllowedValues:
       - dev
+      - test
       - staging
       - prod
 
@@ -15,16 +16,16 @@ Resources:
   MyS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub '${AWS::StackName}-${Environment}-bucket'
+      BucketName: !Sub '${AWS::StackName}-${Environment}-bucket-buma'
       Tags:
         - Key: Environment
           Value: !Ref Environment
         - Key: PROVISIONED_BY
           Value: 'CloudFormation'
-        - Key: PROVISIONES_FOR:
+        - Key: PROVISIONES_FOR
           Value: 'Cloud_Engineer_Academy'
   
-  Outputs:
-    BucketName:
-      Description: The name of the S3 bucket
-      Value: !Ref MyS3Bucket
+Outputs:
+  BucketName:
+    Description: The name of the S3 bucket
+    Value: !Ref MyS3Bucket

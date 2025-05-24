@@ -5,7 +5,7 @@ on:
       - 'cloudformation-cicd/**'
 
 permissions:
-  pull_requests: write
+  pull-requests: write
   contents: read
 
 jobs:
@@ -45,6 +45,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const prNumber = context.issue.number;
+            const stack_name = `pr-test-stack-${prNumber}`;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const commentBody = `CloudFormation test stack \`${stack_name}\` has been successfully created for this PR.`;
@@ -54,3 +55,23 @@ jobs:
               repo: context.repo.repo,
               body: commentBody
             });
+  
+  # Cleanup after PR merge
+  # Delete the CloudFormation stack after the PR is closed
+  cleanup-on-merge:
+    runs-on: ubuntu-latest
+    if: github.event.action == 'closed' && github.event.pull_request.merged == true
+    steps:
+      # Configure AWS credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+
+      # Delete the CloudFormation stack
+      - name: Delete CloudFormation stack
+        run: |
+          stack_name="pr-test-stack-${{ github.event.pull_request.number }}"
+          aws cloudformation delete-stack --stack-name $stack_name
